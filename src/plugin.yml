@@ -1,0 +1,14 @@
+name: CommonSwarm
+version: '1.5.1'
+main: com.liverecord.swarm.SwarmPlugin
+api-version: '1.21'
+author: LiveRecord
+description: '攻撃的なモブを召喚し、対象プレイヤーを襲わせる汎用妨害コマンド'
+commands:
+  swarm:
+    description: '攻撃的なモブを召喚して対象プレイヤーを攻撃させる'
+    usage: '/swarm <モブ> [攻撃回数] [匹数] [プレイヤー名|all|random]'
+permissions:
+  swarm.use:
+    description: 'swarm の操作権限'
+    default: op

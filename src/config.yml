@@ -1,0 +1,63 @@
+# ======================= 汎用 攻撃モブ召喚（Swarm）設定 =======================
+# 引数の順番:  /swarm <モブ> [攻撃回数] [匹数] [対象]
+# 使い方:  /swarm <モブ>                         … 指定モブを「実行者自身」に襲わせる
+#          /swarm <モブ> <攻撃回数>              … 攻撃回数を指定（その回数で消滅）
+#          /swarm <モブ> <攻撃回数> <匹数>       … 匹数も指定
+#          /swarm <モブ> <攻撃回数> <匹数> <名前>… 指定プレイヤーに襲わせる
+#          /swarm <モブ> <攻撃回数> <匹数> all   … オンライン全員に襲わせる
+#          /swarm <モブ> <攻撃回数> <匹数> random… オンラインからランダムな1人に襲わせる
+#          /swarm reset                          … プレイヤー以外の全エンティティを消去（/kill @e[type=!player] 相当・テスト用）
+#          /swarm reload                         … この config.yml を再読み込み
+#
+#   例) /swarm bee                  … 蜂を1匹、自分に（attack-count回 攻撃で消滅）
+#       /swarm bee 2 1              … 蜂を1匹、自分に（2回攻撃で消滅）
+#       /swarm zombie 1 10 all      … ゾンビ10体を全員に（各1回攻撃で消滅）
+#       /swarm bee 3 1 %player%     … 蜂を1匹、%player%に（3回攻撃で消滅）
+#
+# ガチャ等のコンソールコマンドから  /swarm bee 5 %player%  のように呼べます。
+# ============================================================================
+
+# モブ省略時に使うモブ（下の mobs のキー名）。
+default-mob: bee
+
+# 1対象あたりに召喚する数（/swarm <モブ> <匹数> で都度上書き可能）。
+count: 1
+
+# 召喚モブが消滅するまでの攻撃回数（プレイヤーへの攻撃をカウント）。
+#   1 = 1回攻撃したら消える（蜂が1回刺して消えるイメージ）。
+#   コマンド第4引数 /swarm <モブ> <匹数> <対象> <回数> で都度上書き可能。
+attack-count: 1
+
+# 中立モブ（蜂・狼）を怒らせておくティック数（20ティック=1秒）。
+anger-ticks: 99999
+
+# 召喚位置: 対象を中心とした水平方向の散らばり半径（ブロック）。
+spawn-radius: 3.0
+
+# 召喚位置: 対象の足元からの高さ（ブロック）。
+spawn-height: 1.5
+
+# 遠くに離れても消滅しないようにする（true 推奨）。
+persistent: true
+
+# 一度に指定できる最大数（負荷対策の上限）。
+max-count: 100
+
+# --------------------------------------------------------------------------
+# 召喚できるモブの一覧。 「エイリアス（コマンドで打つ名前）: EntityType名」。
+#   - タブ補完にこのキーが出ます。
+#   - 攻撃可能な生物(Mob)のみ有効（村人やアイテム等は不可）。
+#   - ここに無い EntityType 名（例: phantom, enderman）も直接指定できます。
+# 主な候補: BEE, ZOMBIE, SKELETON, SPIDER, CAVE_SPIDER, BLAZE, VEX, WOLF,
+#           CREEPER, HUSK, DROWNED, PILLAGER, VINDICATOR, PHANTOM, ENDERMAN,
+#           WITCH, SILVERFISH, ENDERMITE, SLIME, MAGMA_CUBE, GHAST, ZOGLIN
+# --------------------------------------------------------------------------
+mobs:
+  bee: BEE
+  zombie: ZOMBIE
+  skeleton: SKELETON
+  spider: SPIDER
+  blaze: BLAZE
+  vex: VEX
+  wolf: WOLF
+  creeper: CREEPER
